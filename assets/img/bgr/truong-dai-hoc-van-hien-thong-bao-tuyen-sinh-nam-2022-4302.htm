@@ -1,0 +1,1321 @@
+
+<!DOCTYPE html ">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>
+	Trường đại học Văn Hiến thông báo tuyển sinh năm 2022
+</title><link href="/Components/bootstrap/css/bootstrap.min.css" rel="stylesheet" /><link href="/Components/AnimateCss/animate.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/Scripts/jquery-2.1.4.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="/Resources/ImagesPortal/HomePage/imgs/logo-32x32.png" />
+    
+    <script type="text/javascript" src="/Scripts/jquery.smoove.js"></script>
+    <script type="text/javascript" src="/Components/Waypoint/jquery.waypoints.min.js"></script>
+    
+    <script type="text/javascript" src="/Components/bootstrap/Js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-2.3.0.js"></script>
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
+
+	<!--<script src="https://chat.vhu.edu.vn/Scripts/jquery-3.2.1.min.js"></script>
+  <script src="https://chat.vhu.edu.vn/Scripts/ChatBoxWeb.js"></script> -->
+
+	<meta property="og:title" content="Trường Đại Học Văn Hiến" />​	<meta property="og:url" content="vhu.edu.vn" /><meta property="og:image" content="https://vhu.edu.vn/Resources/Images/SubDomain/HomePage/2019/tuy%E1%BB%83n%20sinh/Logo-cac-truong-dai-hoc-tai-viet-nam-logo-truong-dai-hoc-van-hien.png" />
+
+    <script src="/Scripts/PagingContent.js" type="text/javascript"></script>
+    <script src="/Scripts/zebra_dialog.js" type="text/javascript"></script>
+
+    <link href="/CSS/zebra_dialog.css" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300&amp;subset=latin,vietnamese,latin-ext" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic&amp;subset=latin,vietnamese,latin-ext" rel="stylesheet" />
+
+    <script src="/Resources/ImagesPortal/HomePage/vendors/js/responsive-tabs.js"></script>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKLXDWL');</script>
+<!-- End Google Tag Manager -->
+<meta name="facebook-domain-verification" content="4pca4wwfz56e374t117ataud2gy3t2" />
+<!-- Global site tag (gtag.js) - Google Ads: 882366856 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-882366856"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-882366856');
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-138422409-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-138422409-1');</script>
+
+    <script language="javascript" type="text/javascript">
+
+        var pscjq = jQuery.noConflict();
+
+        function SearchProcess(event, query) {
+            if (event.keyCode == 13) {
+                OnSearch(query);
+                return false;
+            }
+            return true;
+        }
+        function OnSearch(query) {
+            PSCPortal.Services.CMS.SearchAndPaging(query, currentPage, OnSearchSuccess, OnSearchFailed);
+        }
+
+        function OnSearchSuccess(results, context, methodName) {
+            //var position = results.indexOf('_');
+            //totalRecords = results.substring(0, position);
+            //results = results.substring(position + 1);
+            LoadContentAndPaging(results);
+        }
+        function OnSearchFailed(results, context, methodName) {
+        }
+
+        function retitleUrl(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+            // remove accents, swap ñ for n, etc
+            var from = "àáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ·/_,:;";
+            var to = "aaaaaaaaaaaaaaaaadeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyy------";
+            for (var i = 0, l = from.length; i < l; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+            return str;
+        };
+
+        function popunder() {
+            pscjq('a').not('[href^="http"],[href^="https"],[href^="mailto:"],[href^="#"]').each(function () {
+                pscjq(this).attr('href', function (index, value) {
+                    if (value != undefined) {
+                        var index = value.indexOf("Default.aspx");
+                        if (index >= 0)
+                            return value = "/" + value.substring(index, value.length);
+
+                    }
+                });
+            });
+        }
+        //popup dialog
+        function showDialogInfomation(dialogId) {
+            PSCPortal.Services.CMS.GetArticleContent(dialogId, GetArticleContentCallback);
+        }
+        function GetArticleContentCallback(result) {
+            //pscjq.Zebra_Dialog({
+            //    source: { 'inline': result },
+            //    'type': false,
+            //    'buttons': false,
+            //    'width': 900,
+            //    'animation_speed_show': 200,
+            //});         
+
+            pscjq('#articleModal').find('.modal-body').html(result);
+            pscjq('#articleModal').modal();
+
+            pscjq('#articleModal').find('.modal-body').html(result);
+            pscjq('#articleModal').modal();
+
+        }
+
+
+
+    </script>
+    <script type="text/javascript">
+        pscjq(window).scroll(function () {
+            if (pscjq(this).scrollTop() > 50) {
+                pscjq('.backtotop').fadeIn();
+            } else {
+                pscjq('.backtotop').fadeOut();
+            }
+        });
+
+        pscjq('.backtotop').click(function () {
+            pscjq('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    </script>
+
+    <script type="text/html" id="search-binding-template">
+        <div class="s-tintuc">
+            <div class='result_lucene'>
+                Kết quả tìm thấy:<a data-bind="html: Count" href='#'></a>
+            </div>
+            
+            <div class='nd_news'>
+                <!-- ko foreach: Data -->
+                <div style="margin: 5px 0px 5px 0px; float: left; width: 100%;">
+                    <h4><a class="title_topicdisplay" data-bind="attr: { href: Link }, html: Title"></a></h4>
+                    <h3 class="h3_content" data-bind="html: Highligth + '...'"></h3>
+                </div>
+                <!-- /ko -->
+                <div align='center' id='pagingContentHolder' class='ct_topic_r1'></div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        /* (function ($) {           
+             fakewaffle.responsiveTabs(['xs', 'sm']);
+         })(jQuery);*/
+
+
+        pscjq(function () {
+
+            pscjq('a[href="#toggle-search"], .bootsnipp-search .input-group-btn > .btn[type="reset"]').on('click', function (event) {
+                event.preventDefault();
+                pscjq('.bootsnipp-search .input-group > input').val('');
+                pscjq('.bootsnipp-search').toggleClass('open');
+                pscjq('a[href="#toggle-search"]').closest('li').toggleClass('active');
+
+                if (pscjq('.bootsnipp-search').hasClass('open')) {
+                    /* I think .focus dosen't like css animations, set timeout to make sure input gets focus */
+                    setTimeout(function () {
+                        pscjq('.bootsnipp-search .form-control').focus();
+                    }, 100);
+                }
+            });
+
+            pscjq(document).on('keyup', function (event) {
+                if (event.which == 27 && pscjq('.bootsnipp-search').hasClass('open')) {
+                    pscjq('a[href="#toggle-search"]').trigger('click');
+                }
+            });
+            //hover menu
+            pscjq('ul.nav li[class^="dropdown"]').hover(function () {
+                pscjq(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            }, function () {
+                pscjq(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            });
+        });
+    </script>
+<link href="/WebResource.axd?d=SKrXQxOj660mCcaUoVI6SzRfFg39F7Ix-1I-_5gPnqO8TRPWdTm5yq-6zFmR3lflPKPUWpJWS1QYKWuLLi4kJJ6ZcR13v6CJN9Q-xzPFIzToODU-xY4CatWDhckKYnnV7djk4726WAw3j0OAb0zCag2&amp;t=638423073240000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=76SLr9rfji-fAZDISpEK9m18FXM0xJrcalDc9_8iHQVXXGnx4jKnqTVJYze7u3PDoRDz0q86cBH1_VNqv0ZABIUJeiI08joWeSIfbnJ2c0PQGtBUsjsdAm1c5E0rucquBbGZmV1of_xKmsg6dkX4OBJpJ4Om7eQJdTs484yD3Kk1&amp;t=638423073240000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<body id="bd" class="homepage home-layout1 res" onload='popunder();'>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKLXDWL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <form name="form1" method="post" action="./truong-dai-hoc-van-hien-thong-bao-tuyen-sinh-nam-2022-4302" id="form1">
+<div>
+<input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPaA8FDzhkYzkzOTRmOGViYWZmYhgCBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAgURUmFkV2luZG93TWFuYWdlcjEFF2N0bDE1JGN0bDAzJHJ3VXNlckxvZ2luBRljdGwxNSRjdGwwMyRSYWREYXRhUGFnZXIxDxQrAARkZgIKZmTWWYFfolOTS3L2UYZhAh87iFkvXULXMWRhRSG0RJCVCg==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=no8UFxoKONetzw4GcEJR0RLI2qkKt_wk84zOk5O4ANqJodpAEFlotvHy94_dUpypdjiJS_9gABBFue5G0kT2-FpHKtSZC9baJqprcnny86I1&amp;t=638465307187615987" type="text/javascript"></script>
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=RadScriptManager1_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3avi-VN%3a97d7cfc3-9653-421f-ae1b-e8cee27133af%3aea597d4b%3ab25378d2%3bTelerik.Web.UI%2c+Version%3d2024.1.131.45%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3avi-VN%3a9948a144-ff46-44f4-9ae0-6f54d8eaff7b%3a16e4e7cd%3af7645509%3a24ee1bba%3ab2e06756%3a92fe8ea0%3afa31b949%3ac128760b%3a874f8ea2%3a4877f69a%3a33715776%3a19620875%3af46195d3%3a490a9d4e%3abd8f85e4" type="text/javascript"></script>
+<script src="../../Services/PortletProxy.asmx/js" type="text/javascript"></script>
+<script src="../../Services/ModuleProxy.asmx/js" type="text/javascript"></script>
+<script src="../../Services/CMS.asmx/js" type="text/javascript"></script>
+<script src="../../Services/WeatherService.asmx/js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+</div>
+        <div id="RadWindowManager1" style="display:none;">
+	<!-- 2024.1.131.45 --><div id="RadWindowManager1_alerttemplate" style="display:none;">
+        <div class="rwDialogPopup radalert">
+            <div class="rwDialogText">
+            {1}
+            </div>
+
+            <div>
+                <a  onclick="$find('{0}').close(true);"
+                class="rwPopupButton" href="javascript:void(0);">
+                    <span class="rwOuterSpan">
+                        <span class="rwInnerSpan">##LOC[OK]##</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        </div><div id="RadWindowManager1_prompttemplate" style="display:none;">
+         <div class="rwDialogPopup radprompt">
+                <div class="rwDialogText">
+                {1}
+                </div>
+                <div>
+                    <script type="text/javascript">
+                    function RadWindowprompt_detectenter(id, ev, input)
+                    {
+                        if (!ev) ev = window.event;
+                        if (ev.keyCode == 13)
+                        {
+                            var but = input.parentNode.parentNode.getElementsByTagName("A")[0];
+                            if (but)
+                            {
+                                if (but.click) but.click();
+                                else if (but.onclick)
+                                {
+                                    but.focus(); var click = but.onclick; but.onclick = null; if (click) click.call(but);
+                                }
+                            }
+                           return false;
+                        }
+                        else return true;
+                    }
+                    </script>
+                    <input title="Enter Value" onkeydown="return RadWindowprompt_detectenter('{0}', event, this);" type="text"  class="rwDialogInput" value="{2}" />
+                </div>
+                <div>
+                    <a onclick="$find('{0}').close(this.parentNode.parentNode.getElementsByTagName('input')[0].value);"
+                        class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+                    <a onclick="$find('{0}').close(null);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+                </div>
+            </div>
+        </div><div id="RadWindowManager1_confirmtemplate" style="display:none;">
+        <div class="rwDialogPopup radconfirm">
+            <div class="rwDialogText">
+            {1}
+            </div>
+            <div>
+                <a onclick="$find('{0}').close(true);"  class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+                <a onclick="$find('{0}').close(false);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+            </div>
+        </div>
+        </div><input id="RadWindowManager1_ClientState" name="RadWindowManager1_ClientState" type="hidden" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('RadScriptManager1', 'form1', [], [], [], 90, '');
+//]]>
+</script>
+
+        
+
+<link href="/Resources/ImagesPortal/PhongTS/vendors/css/normalize.css" rel="stylesheet" />
+<link href="/Resources/ImagesPortal/PhongTS/vendors/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/Resources/ImagesPortal/PhongTS/css/jquery.smartmenus.bootstrap.css" rel="stylesheet" />
+
+<link href="/Resources/ImagesPortal/PhongTS/css/VH_tuyensinh.css" rel="stylesheet" />
+<link href="/Resources/ImagesPortal/PhongTS/css/VH_tuyensinh_chitiet.css" rel="stylesheet" />
+<link href="/Resources/ImagesPortal/PhongTS/css/review.css" rel="stylesheet" />
+
+<script src="/Resources/ImagesPortal/PhongTS/js/jquery.smartmenus.min.js"></script>
+<script src="/Resources/ImagesPortal/PhongTS/js/jquery.smartmenus.bootstrap.min.js"></script>
+<link href="/Resources/ImagesPortal/PhongTS/css/VH_tuyensinh_2_fix.css" rel="stylesheet" />
+
+<div id="ts-page" class="width-common">
+            <div id="psc-divPanelWrapper">
+	<div id="psc-divPanelTop" style="width:100%; float:left;">
+		<div id="psc-divPanelTop-Content" style="min-height: 30px;">
+			<div id="psc-divPortlet-da1cfba1-a351-4a95-ac80-a47a9df20bac" class="psc-divPortlet-Wrapper" style="width:100%; float:left;">
+				<div class="psc-divPortlet-Content">
+					<div id="ts-top-link" class="width-common">
+<div class="container">
+<div class="row">
+<div class="ts-left col-xs-6 col-md-6">
+<a href="http://vhu.edu.vn"><span class="fa fa-home"></span> trang chủ đh văn hiến</a>
+</div>
+<div class="ts-right col-xs-6 col-md-6">
+<ul>
+    <li class="one">
+    <a href="http://www.vhu.edu.vn/page/lien-he" title="Liên hệ">li&ecirc;n hệ</a>
+    <span class="slash">|</span>
+    <a href="#" title="Language">language</a>
+    </li>
+    <li class="two">
+    <a href="https://www.facebook.com/vhu.edu.vn" title="facebook"><span class="fa fa-facebook-square" aria-hidden="true"></span></a>
+    <a href="https://www.youtube.com/user/DHVanHien" title="youtube"><span class="fa fa-youtube-square" aria-hidden="true"></span></a>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+			</div><div id="psc-divPortlet-d5747b06-c23c-4894-8d28-09a74657280d" class="psc-divPortlet-Wrapper" style="float:left;width:100%">
+				<div class="psc-divPortlet-Content">
+					
+
+
+ <header id="ts-top-header" class="width-common">
+			<div class="container">				
+				<div class="ts-logo">					
+					<div class="ts-right">
+						<p>mã trường: <span class="txt-big">dvh</span></p>
+						<p>hotline: <span class="txt-big">18001568</span></p>
+					</div>
+				</div>
+				
+				<div class="top-menu row">										
+					<div class="navbar navbar-default navbar-static-top" role="navigation">
+						<div class="container">
+							<div class="navbar-header">								
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>								
+								<div class="mobile-search">
+									<input type="text" name="search" placeholder="Tìm kiếm..."/>
+								</div>
+								
+                                 <a class="navbar-brand" href="https://tuyensinh.vhu.edu.vn/"><img alt="" src="/Resources/Images/SubDomain/tuyensinh/TT-TVTS.png" />
+</a>
+							</div>
+							<div class="navbar-collapse collapse">			
+								<ul class="nav navbar-nav">
+									 <li ><a href='http://tuyensinh.vhu.edu.vn/'>Trang chủ</a></li><li><a>Ngành đào tạo<span class='caret'></span></a><ul class=dropdown-menu ><li><a href='/vi/cong-nghe-thong-tin/nhung-dieu-can-biet-ve-nganh-cong-nghe-thong-tin-3252'>Công nghệ thông tin</a></li><li><a href='/vi/ky-thuat-dien-tu-vien-thong/nhung-dieu-can-biet-ve-nganh-ky-thuat-dien-tu-vien-thong'>Kỹ thuật điện tử - viễn thông</a></li><li><a href='/vi/quan-tri-kinh-doanh/nhung-dieu-can-biet-ve-nganh-quan-tri-kinh-doanh'>Quản trị kinh doanh</a></li><li><a href='/vi/tai-chinh-ngan-hang/nhung-dieu-can-biet-ve-nganh-tai-chinh-ngan-hang'>Tài chính ngân hàng</a></li><li><a href='/vi/ke-toan-1331/nhung-dieu-can-biet-ve-nganh-ke-toan'>Kế toán</a></li><li><a href='/vi/logistics-va-quan-ly-chuoi-cung-ung/nhung-dieu-can-biet-ve-nganh-logistics-va-quan-ly-chuoi-cung-ung'>Logistics và quản lý chuỗi cung ứng</a></li><li><a href='/vi/du-lich-1332/nhung-dieu-can-biet-ve-nganh-du-lich'>Du lịch</a></li><li><a href='/vi/quan-tri-dich-vu-du-lich-va-lu-hanh/nhung-dieu-can-biet-ve-nganh-quan-tri-dich-vu-du-lich-va-lu-hanh'>Quản trị dịch vụ du lịch và lữ hành</a></li><li><a href='/vi/quan-tri-khach-san/nhung-dieu-can-biet-ve-nganh-quan-tri-khach-san'>Quản trị khách sạn</a></li><li><a href='/vi/cong-nghe-sinh-hoc/nhung-dieu-can-biet-ve-nganh-cong-nghe-sinh-hoc'>Công nghệ sinh học</a></li><li><a href='/vi/cong-nghe-thuc-pham/nhung-dieu-can-biet-ve-nganh-cong-nghe-thuc-pham'>Công nghệ thực phẩm</a></li><li><a href='/vi/xa-hoi-hoc/nhung-dieu-can-biet-ve-nganh-xa-hoi-hoc'>Xã hội học</a></li><li><a href='/vi/tam-ly-hoc/nhung-dieu-can-biet-ve-nganh-tam-ly-hoc'>Tâm lý học</a></li><li><a href='/vi/van-hoc/nhung-dieu-can-biet-ve-nganh-van-hoc'>Văn học</a></li><li><a href='/vi/qh-cong-chung-va-truyen-thong/nhung-dieu-can-biet-ve-nganh-quan-he-cong-chung'>QH công chúng </a></li><li><a href='/vi/ngon-ngu-anh/nhung-dieu-can-biet-ve-nganh-ngon-ngu-anh'>Ngôn ngữ Anh</a></li><li><a href='/vi/ngon-ngu-trung-quoc/nhung-dieu-can-biet-ve-nganh-ngon-ngu-trung-quoc'>Ngôn ngữ Trung Quốc</a></li><li><a href='/vi/ngon-ngu-nhat/nhung-dieu-can-biet-ve-nganh-ngon-ngu-nhat'>Ngôn ngữ Nhật</a></li><li><a href='/vi/dong-phuong-hoc-984/nhung-dieu-can-biet-ve-nganh-dong-phuong-hoc'>Đông phương học</a></li><li><a href='/vi/thanh-nhac-985/nhung-dieu-can-biet-ve-nganh-thanh-nhac'>Thanh nhạc</a></li><li><a href='/vi/piano-986/nhung-dieu-can-biet-ve-nganh-piano'>Piano</a></li><li><a href='/vi/luat/nhung-dieu-can-biet-ve-nganh-luat'>Luật</a></li><li><a href='/vi/thuong-mai-dien-tu/nhung-dieu-can-biet-ve-nganh-thuong-mai-dien-tu'>Thương mại điện tử</a></li><li><a href='/vi/cong-nghe-tai-chinh/nhung-dieu-can-biet-ve-nganh-cong-nghe-tai-chinh'>Công nghệ Tài chính</a></li><li><a href='/vi/khoa-hoc-may-tinh/nhung-dieu-can-biet-ve-nganh-khoa-hoc-may-tinh'>Khoa học máy tính</a></li><li><a href='/vi/dieu-duong/nhung-dieu-can-biet-ve-nganh-dieu-duong'>Điều dưỡng</a></li><li><a href='/vi/kinh-te-1987/nhung-dieu-can-biet-ve-nganh-kinh-te'>Kinh tế</a></li><li><a href='/vi/marketing-1977/nhung-dieu-can-biet-ve-nganh-marketing'>Marketing</a></li><li><a href='/vi/ky-thuat-moi-truong/nhung-dieu-can-biet-ve-nganh-ky-thuat-moi-truong'>Kỹ thuật môi trường</a></li><li><a href='/vi/kinh-doanh-thuong-mai/nhung-dieu-can-biet-ve-nganh-kinh-doanh-thuong-mai'>Kinh doanh thương mại</a></li><li><a href='/vi/van-hoa-hoc/nhung-dieu-can-biet-ve-nganh-van-hoa-hoc'>Văn hóa học</a></li><li><a href='/vi/tuyen-thong-da-phuong-tien/nhung-dieu-can-biet-ve-nganh-truyen-thong-da-phuong-tien'>Truyền thông đa phương tiện</a></li><li><a href='/vi/viet-nam-hoc/nhung-dieu-can-biet-ve-nganh-viet-nam-hoc'>Việt Nam học</a></li><li><a href='/vi/ngon-ngu-phap/nhung-dieu-can-biet-ve-nganh-ngon-ngu-phap'>Ngôn ngữ Pháp</a></li><li><a href='/vi/ngon-ngu-trung-quoc-lien-ket-quoc-te/nhung-dieu-can-biet-ve-nganh-ngon-ngu-trung-quoc-lien-ket-quoc-te'>Liên kết Quốc tế</a></li></ul></li><li><a>Thông tin tuyển sinh<span class='caret'></span></a><ul class=dropdown-menu ><li><a href='https://tuyensinh.vhu.edu.vn/vi/de-an-tuyen-sinh'>Đề án tuyển sinh</a></li><li><a href='/vi/cau-hoi-thuong-gap/nhung-cau-hoi-thuong-gap-lien-quan-den-tuyen-sinh-2023'>Câu hỏi thường gặp</a></li><li><a href='/vi/dai-hoc'>Tin tuyển sinh</a></li><li><a href='/vi/quy-che-tuyen-sinh'>Quy chế tuyển sinh </a></li></ul></li><li><a>Môi trường học tập<span class='caret'></span></a><ul class=dropdown-menu ><li><a href='/vi/vi-sao-chon-vhu'>Vì sao chọn VHU</a></li><li><a href='https://htdn.vhu.edu.vn/vi/viec-lam-full-time'>Cơ hội việc làm</a></li><li><a href='http://doanhoi.vhu.edu.vn/'>Hoạt động sinh viên</a></li><li><a href='http://htdn.vhu.edu.vn/'>Quan hệ doanh nghiệp</a></li><li><a href='https://portal.vhu.edu.vn/'>Cổng thông tin</a></li></ul></li><li ><a href='https://dangky.vhu.edu.vn/tuyen-sinh'>Đăng ký tuyển sinh online</a></li><li><a>Tìm kiếm nhanh<span class='caret'></span></a><ul class=dropdown-menu ><li><a href='/vi/sau-dai-hoc'>Thạc sĩ</a></li><li><a href='/vi/dai-hoc-cao-dang'>Đại học - Cao đẳng</a></li><li><a href='http://tuyensinh.vhu.edu.vn/vi/lien-thong-van-bang-2'>Liên thông - Văn bằng 2</a></li></ul></li>
+								</ul>
+
+							</div>
+							<!--/.nav-collapse -->
+						</div>
+						<!--/.container -->
+						<div class="bootsnipp-search animate">
+							<div class="container">
+								<form action="http://bootsnipp.com/search" method="GET" role="search">
+									<div class="input-group">
+										<input type="text" class="form-control" name="q" placeholder="Search ..." id="txtSearchArticle" onkeydown="return SearchProcess(event,document.getElementById('txtSearchArticle').value);">
+										<span class="input-group-btn">
+											<button class="btn btn-danger" type="reset"><span class="glyphicon glyphicon-remove"></span>
+											</button>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.top-menu -->
+			</div>
+		</header>
+
+
+
+ 
+
+ 
+				</div>
+			</div><div id="psc-divPortlet-05aedc9a-d026-429b-b87e-8762d8b8c20f" class="psc-divPortlet-Wrapper" style="width:100%; float:left;">
+				<div class="psc-divPortlet-Content">
+					<div id="divAdRight" style="z-index: 9999; position: absolute; top: 0px; width: 150px; height: 359px; overflow: hidden;"><a href="http://dangky.vhu.edu.vn/#/ChucNang" target="_blank"><br />
+</a>
+</div>
+<div id="divAdLeft" style="z-index: 9999; position: absolute; top: 0px; width: 150px; height: 359px; overflow: hidden;">&nbsp;</div>
+
+				</div>
+			</div>
+		</div>
+	</div><div id="psc-divPanelMid">
+		<div id="psc-divPanelLeft" style="">
+			<div id="psc-divPanelLeft-Content" style="min-height: 30px;">
+
+			</div>
+		</div><div id="psc-divPanelCenter" style="width:100%; float:left;">
+			<div id="psc-divPanelCenter-Content" style="min-height: 30px;">
+				
+<script src="/Scripts/GetAppIdBySubDomain.js"></script>
+
+<style type="text/css">
+
+
+    .Default.reWrapper {
+        width: 100% !important;
+    }
+    .RadEditor table.reLayoutWrapper{
+        height:250px!important;
+    }
+    .Default.RadEditor .reContentCell{
+        height:250px!important;
+    }
+    .form-control, .reToolZone span{
+            font-size:13px;
+        }
+ .reContentCell iframe{
+     height:250px!important;
+ }
+   .column-gopy{
+        padding:5px 0px;
+    }
+   table{
+       border: solid 1px!important;
+   }
+table td{
+   border: 1px solid #000;
+    padding: 3px;
+}
+  .anhien, anhien0,.anhien1,.anhien2,.anhien3,.anhien4,.anhien5,.anhien6{
+        padding: 5px;
+        margin:5px 0px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+    font-weight: bold;
+    width:100%;
+    float:left;
+    }
+    .download {
+        height:20px;
+        width:100%;
+    float:left;
+    }
+    .download img{float:left;
+                  padding: 0px 5px 0px 0px;
+                  width:20px;
+    }
+    .icon-down{
+        float:right;
+        margin:0px 10px;
+    }
+    .icon-in{
+        float:right;
+    }
+
+
+     @media (max-width: 768px) {
+       
+       
+        /* màn hình dưới 768*/
+        .column-1,
+        .column-2,
+        .column-3,
+        .column-4 {
+            padding-left: 0px!important;
+        }
+         .name{
+        padding:0px;
+    }
+    }
+     .wrapper li{
+         list-style:inherit!important
+     }
+     span:lang(NL) {
+   font-size:12px!important;
+}
+</style>
+<script type="text/javascript">
+    function OnSendArticle() {
+        var result = window.showModalDialog("/Modules/CMS/SendArticle.aspx", document.URL, "dialogHeight: 320px; dialogWidth: 450px;");
+    }
+    function OnBack() {
+        window.history.back();
+    }
+    function OnGoToHead() {
+        window.moveTo(0, 0);
+    }
+
+</script>
+<script type="text/javascript">
+
+    pscjq(document).ready(function () {
+
+        pscjq(".slidingDiv").show();
+        pscjq(".show_hide").show();
+        pscjq("#homepage-url").attr("href", "http://" + location.hostname);
+        pscjq('.show_hide').click(function () {
+            pscjq(".slidingDiv").slideToggle();
+        });
+        pscjq('#print').click(function () {
+            window.print();
+        });
+        pscjq('.noidungxem').show(); // khi không xem 
+        pscjq('.anhien').show();     // thì đóng tab đó
+        pscjq('.anhien').click(function () {
+            pscjq(".noidungxem").slideToggle();
+        });
+    });
+
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="chitiet container">
+<div class="chitiet width-common">
+				<div class="header width-common">
+					<div class="title col-sm-8">
+						<h1>Trường đại học Văn Hiến thông báo tuyển sinh năm 2022</h1>
+					</div>
+					<div class="link col-sm-4">
+						<ul>
+							<li><a id="homepage-url" href="#">Trang Chủ<span class="fa fa-angle-right" aria-hidden="true"></span></a></li>
+							<li><a href="/vi/thong-tin-tuyen-sinh-xet-tuyen-5826">Tin tuyển sinh</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- ./header -->
+				<div class="line width-common">
+					<img src="/Resources/ImagesPortal/HomePage/imgs/line-nhan-dien.png" alt="line">
+				</div>
+			
+				<div class="ngaydang width-common">
+					<div class="ngaydang-baiviet">
+						<span class="fa fa-calendar" aria-hidden="true"></span>
+						<!-- <span class="text-uppercase">07 Thang 04  2022</span> -->
+					    <span class="text-uppercase">07 tháng 04 năm 2022</span>
+					</div>
+					<div class="tien-ich">
+						<ul>
+							<li> <a href="javascript:void()" onclick="print()" class="text-uppercase"><span class="fa fa-print" aria-hidden="true"></span>In bai viet</a></li>
+							<li> <a href="javascript:void()" onclick="sendpdf()" class="text-uppercase"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>Xuat pdf</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- ./ngaydang -->
+				
+				<div class="bai-viet width-common">
+					<div class="noidung-baiviet col-sm-8">
+						<div class="wrapper">
+							<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>Với t&acirc;m huyết x&acirc;y dựng trường đại học theo định hướng ứng dụng, hội nhập quốc tế, đa dạng ng&agrave;nh nghề đ&agrave;o tạo v&agrave; linh hoạt theo y&ecirc;u cầu ph&aacute;t triển kinh tế x&atilde; hội của đất nước c&ugrave;ng với triết l&yacute; gi&aacute;o dục &ldquo;Th&agrave;nh Nh&acirc;n trước th&agrave;nh Danh&rdquo;, năm 2022, Trường đại học (ĐH) Văn Hiến tuyển sinh 30 ng&agrave;nh đ&agrave;o tạo tr&igrave;nh độ đại học với đa dạng c&aacute;c phương thức x&eacute;t tuyển c&ugrave;ng nhiều ch&iacute;nh s&aacute;ch hỗ trợ th&iacute; sinh.</strong></span></div>
+<p style="text-align: center;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong><img alt="" src="/Resources/Images/SubDomain/homepage/2022/tuyensinh/thongbaotuyensinh02-min.png" /></strong></span></p>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>Phương thức x&eacute;t tuyển</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><em>&nbsp;* X&eacute;t theo kết quả học bạ THPT.</em></span></div>
+<div style="text-align: justify;"><em><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* X&eacute;t theo kết quả kỳ thi Tốt nghiệp THPT 2022.</span></em></div>
+<div style="text-align: justify;"><em><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* X&eacute;t theo kết quả b&agrave;i thi đ&aacute;nh gi&aacute; năng lực của ĐH Quốc gia TPHCM.</span></em></div>
+<div style="text-align: justify;"><em><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* X&eacute;t tuyển thẳng theo quy định ri&ecirc;ng của Trường&nbsp; ĐH Văn Hiến.</span></em></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><em>&nbsp;* X&eacute;t theo kỳ thi ri&ecirc;ng đối với ng&agrave;nh Thanh nhạc v&agrave; Piano.</em></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>Thời gian nhận hồ sơ x&eacute;t tuyển</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><span style="color: #ff0000;">Trường&nbsp; ĐH Văn Hiến x&eacute;t tuyển học bạ đợt 2 đến ng&agrave;y 31/5/2022</span>.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>H&igrave;nh thức x&eacute;t tuyển học bạ:</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><em>H&igrave;nh thức 1: Tổng điểm trung b&igrave;nh của 3 m&ocirc;n x&eacute;t tuyển trong 5 học kỳ (2 học kỳ lớp 10; 2 học kỳ lớp 11 v&agrave; học kỳ 1 của lớp 12) + điểm ưu ti&ecirc;n khu vực/đối tượng đạt từ 18 điểm.</em></span></div>
+<div style="text-align: justify;"><em><span style="font-size: 14px; font-family: Arial; color: #000000;">H&igrave;nh thức 2: Tổng điểm trung b&igrave;nh của 3 m&ocirc;n x&eacute;t tuyển trong 3 học kỳ (2 học kỳ lớp 11 v&agrave; học kỳ 1 của lớp 12) + điểm ưu ti&ecirc;n khu vực/đối tượng đạt từ 18 điểm.</span></em></div>
+<div style="text-align: justify;"><em><span style="font-size: 14px; font-family: Arial; color: #000000;">H&igrave;nh thức 3: Tổng điểm trung b&igrave;nh của 3 m&ocirc;n x&eacute;t tuyển trong 2 học kỳ (lớp 12) + điểm ưu ti&ecirc;n khu vực/đối tượng đạt từ 18 điểm.</span></em></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><em>H&igrave;nh thức 4: Tổng điểm trung b&igrave;nh chung cả năm lớp 12 đạt từ 6 điểm trở l&ecirc;n.</em></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">Trường ĐH Văn Hiến kh&ocirc;ng ngừng mở rộng mạng lưới li&ecirc;n kết với c&aacute;c trường học, c&aacute;c tổ chức uy t&iacute;n tr&ecirc;n thế giới như H&agrave;n Quốc, Nhật Bản, Th&aacute;i Lan, CHLB Đức, Li&ecirc;n bang Nga, Ph&aacute;p, Canada&hellip; để trao đổi kinh nghiệm, n&acirc;ng cao chất lượng đ&agrave;o tạo v&agrave; mang đến nhiều lợi &iacute;ch cho sinh vi&ecirc;n như trao đổi sinh vi&ecirc;n, đưa sinh vi&ecirc;n sang thực tập v&agrave; l&agrave;m việc.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">Hiện nay, trường đ&atilde; đưa v&agrave;o hoạt động cơ sở HungHau Campus tại khu vực Nam th&agrave;nh phố với tổng diện t&iacute;ch l&ecirc;n đến 60.000m&sup2;, cơ sở vật chất khang trang, kh&ocirc;ng gian nội khu được trang bị c&aacute;c thiết bị hiện đại c&ugrave;ng nhiều ph&ograve;ng thực h&agrave;nh, m&ocirc; phỏng theo từng chuy&ecirc;n ng&agrave;nh thuộc c&aacute;c lĩnh vực du lịch, c&ocirc;ng nghệ th&ocirc;ng tin, t&agrave;i ch&iacute;nh, kế to&aacute;n, truyền th&ocirc;ng đa phương tiện&hellip; sẽ đ&aacute;p ứng đầy đủ nhu cầu học tập v&agrave; tham khảo t&agrave;i liệu của sinh vi&ecirc;n. Ngo&agrave;i ra, sinh vi&ecirc;n c&ograve;n c&oacute; nhiều khu tự học, vui chơi giải tr&iacute; sau giờ học.</span></div>
+<p style="text-align: center;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><img alt="" src="/Resources/Images/SubDomain/homepage/2022/tuyensinh/thongbaotuyensinh01-min.png" /></span></p>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>Đặc biệt, Trường ĐH Văn Hiến c&oacute; ch&iacute;nh s&aacute;ch, chế độ hỗ trợ c&ugrave;ng quỹ học bổng nhằm hỗ trợ sinh vi&ecirc;n trong suốt kh&oacute;a học.</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">- T&acirc;n sinh vi&ecirc;n được miễn ph&iacute; c&aacute;c dịch vụ h&agrave;nh ch&iacute;nh v&agrave; giữ xe trong suốt kh&oacute;a học; được nhận c&aacute;c tặng phẩm gồm: ba l&ocirc;, n&oacute;n bảo hiểm, sổ tay sinh vi&ecirc;n&hellip;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">- Chương tr&igrave;nh cho vay học ph&iacute; &ldquo;kết nối niềm tin&rdquo; hỗ trợ sinh vi&ecirc;n c&oacute; ho&agrave;n cảnh kh&oacute; khăn v&agrave; c&oacute; kết quả học tập trung b&igrave;nh - kh&aacute; trở l&ecirc;n được vay học ph&iacute; với l&atilde;i suất 0%. Chương tr&igrave;nh phối hợp v&agrave; do Quỹ Tr&aacute;i tim H&ugrave;ng Hậu tiếp nhận v&agrave; ph&ecirc; duyệt thực hiện.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>- Học bổng &ldquo;Tr&aacute;i tim H&ugrave;ng Hậu&rdquo; tổng trị gi&aacute; 30 tỷ đồng gồm:</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp; &nbsp;+ Học bổng Chắp c&aacute;nh ước mơ (tương đương 130 triệu đồng/1 suất): Đ&acirc;y l&agrave; học bổng to&agrave;n kh&oacute;a d&agrave;nh ri&ecirc;ng cho học sinh lớp 12 xếp loại giỏi trở l&ecirc;n đăng k&yacute; tr&uacute;ng tuyển v&agrave;o Trường ĐH Văn Hiến v&agrave; vượt qua v&ograve;ng phỏng vấn trực tiếp do nh&agrave; trường tổ chức. Mỗi năm sẽ trao 2 suất học bổng cho t&acirc;n sinh vi&ecirc;n c&oacute; th&agrave;nh t&iacute;ch cao nhất.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp; &nbsp;+ Học bổng Khuyến kh&iacute;ch học tập (từ 2-4 triệu đồng/1 suất): L&agrave; học bổng d&agrave;nh cho sinh vi&ecirc;n c&oacute; điểm trung b&igrave;nh năm học từ 3,2 trở l&ecirc;n theo thang điểm 5, t&iacute;ch lũy 36 t&iacute;n chỉ/năm trở l&ecirc;n. Kh&ocirc;ng c&oacute; m&ocirc;n n&agrave;o thi lại, học lại hoặc m&ocirc;n học dưới 2. Điểm r&egrave;n luyện từ kh&aacute; trở l&ecirc;n.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp; &nbsp;+ 10 suất Học bổng Quang Trung (3 triệu đồng/1 suất): D&agrave;nh cho c&aacute;c bạn t&acirc;n sinh vi&ecirc;n Văn Hiến qu&ecirc; ở B&igrave;nh Định c&oacute; điểm thi đầu v&agrave;o đạt loại giỏi, ho&agrave;n cảnh kh&oacute; khăn.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp; &nbsp;+ 10 suất Học bổng Ho&agrave;ng Như Mai (2 triệu đồng/1 suất): Học bổng d&agrave;nh cho sinh vi&ecirc;n c&oacute; ho&agrave;n cảnh kh&oacute; khăn v&agrave; c&oacute; kết quả học tập xếp loại kh&aacute; trở l&ecirc;n.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp; &nbsp;+ Học bổng Đồng h&agrave;nh c&ugrave;ng H&ugrave;ng Hậu: Từ 15% học ph&iacute; to&agrave;n kh&oacute;a đến 50% học ph&iacute; to&agrave;n kh&oacute;a.</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;"><strong>C&ugrave;ng c&aacute;c ch&iacute;nh s&aacute;ch v&agrave; chế độ hỗ trợ người học tốt nhất:</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* Cam kết giới thiệu nơi thực tập v&agrave; l&agrave;m việc sau khi tốt nghiệp;</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* Được giới thiệu nơi l&agrave;m việc b&aacute;n thời gian (part time), thực tập c&oacute; lương... tại c&aacute;c cơ quan, doanh nghiệp trong v&agrave; ngo&agrave;i nước (Nhật Bản, H&agrave;n Quốc...);</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* Đảm bảo c&aacute;c điều kiện về chất lượng đ&agrave;o tạo v&agrave; chuẩn đầu ra của trường;</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* Được tạm ho&atilde;n nghĩa vụ qu&acirc;n sự, miễn giảm học ph&iacute;, x&eacute;t cấp học bổng tại địa phương, vay vốn t&iacute;n dụng từ Ng&acirc;n h&agrave;ng Ch&iacute;nh s&aacute;ch x&atilde; hội;</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* Đội ngũ giảng vi&ecirc;n chọn lọc, tận t&acirc;m, c&oacute; uy t&iacute;n v&agrave; gi&agrave;u kinh nghiệm;</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #000000;">&nbsp;* C&oacute; thể n&acirc;ng cao tr&igrave;nh độ (thạc sĩ, tiến sĩ) theo quy định của Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo.</span></div>
+<p style="text-align: justify;"><span style="font-size: 13px; color: #0070c0;"><strong><em>&nbsp;&gt;&gt;NHANH TAY ĐĂNG K&Yacute; NGAY</em></strong></span></p>
+<p style="text-align: center;"><span style="font-size: 13px; color: #000000;"><a href="https://dangky.vhu.edu.vn/#/ChucNang/GhiDanh" style="text-align: center;"><img alt="" src="/Resources/Images/SubDomain/HomePage/2020/1-2020/BUTTON.jpg " style="height: auto; width: 190px; text-align: center;" height="0" /></a></span></p>
+<p style="text-align: justify;"><span style="font-size: 13px; color: #0070c0;"><strong><em>&nbsp;&gt;&gt;Để được tư vấn chi tiết hơn, th&iacute; sinh đăng k&yacute; TẠI Đ&Acirc;Y&nbsp;</em></strong></span></p>
+<p style="text-align: center;"><span style="font-size: 13px; color: #000000;">
+<a href="https://www.facebook.com/vhu.edu.vn/" style="text-align: center;"><img alt="" src="/Resources/Images/SubDomain/HomePage/2020/1-2020/tu%20van%20truc%20tuyen.jpg" style="height: auto; width: 190px; text-align: center;" height="0" /></a><span style="text-align: justify;"></span></span></p>
+                            
+						</div>
+                         <div id="ctl15_ctl03_ValidationSummary1" style="color:Red;display:none;">
+
+				</div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
+                        
+                    </div>
+                </div>
+                <div class="gopy" style="display: none;">
+                    <div style="float: left; padding-bottom: 5px; width: 100%;">
+                        <div style="background-color: #7a1214; border-radius: 6px; no-repeat; width: 76px; height: 24px; float: left;">
+                            <div style="font-weight: bold; font: 13px Verdana; color: #fff; padding-top: 3px; text-align: center"
+                                class="show_hide">
+                                Góp ý
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-family: Verdana; font-size: small; color: #FF0000; float: left; width: 100%;">
+                        
+                    </div>
+
+                    <div class="slidingDiv" style="width:100%;float: left; display: block; padding-top: 20px; border-top: 1px solid #c2c2c2">
+                     
+                   <form class="form-inline">
+                       <div class="row">
+                          <div class="fb-comments" data-width="100%" data-href="https://tuyensinh.vhu.edu.vn//vi/thong-tin-tuyen-sinh-xet-tuyen-5826/truong-dai-hoc-van-hien-thong-bao-tuyen-sinh-nam-2022-4302" data-numposts="5"></div>
+                      </div> 
+                </form>
+                            
+                     </div>
+                </div>
+					</div>
+					<!-- ./noidung-baiviet -->
+					<div class="tin-lien-quan col-sm-4">
+						<div class="item width-common">
+							<div class="text-head width-common"><a href="#">Ngành đào tạo</a></div>
+							<div class="box-list width-common">
+                                
+								<article>							
+									<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+									<a class="title text-uppercase" href="" title=""></a>									
+								</article>
+                                        
+								<article>							
+									<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+									<a class="title text-uppercase" href="/vi/lien-thong-van-bang-2" title="">LIÊN THÔNG - VĂN BẰNG 2</a>									
+								</article>
+                                        
+								<article>							
+									<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+									<a class="title text-uppercase" href="/vi/dai-hoc" title="">ĐẠI HỌC</a>									
+								</article>
+                                        
+								<article>							
+									<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+									<a class="title text-uppercase" href="/vi/sau-dai-hoc" title="">SAU ĐẠI HỌC</a>									
+								</article>
+                                        						
+							</div>
+						</div>
+						<div class="item width-common" style="display:none;">
+							<div class="text-head width-common"><a href="#">Tin mới</a></div>
+							<div class="box-list width-common">
+                                
+																			
+							</div>
+						</div>
+					</div>
+					<!-- ./tin-lien-quan -->
+                      <div style="clear: both; padding-top: 15px; float: right; padding-right: 5px; padding-left: 0px;">
+                    <div id="ctl15_ctl03_Panel1" style="color:Black;">
+					
+                    
+				</div>
+                </div>
+				</div>
+				<!-- ./bai-viet -->
+
+                    
+			</div> 
+			<!-- ./container -->
+		</div>
+
+<div id="Article_Display" style="display:none">
+    <!--end home-->
+    <div class="container">
+
+
+    
+    <div class="row"  style="display:none">
+        <div class="col-xs-12 col-sm-8 col-md-12 Article_Display_left ">
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-12 Article_Display_right">
+            <div id="tintuc-right">
+                <div id="topic-share">
+                    <div class="icon-share" id="print">
+                        <a>
+                            <img src="/Resources/ImagesPortal/HomePage/imgs/icon/icon_print.png" title="In bài viết này ra"></a>
+                    </div>
+                    <div class="icon-share">
+                        <a href="https://plus.google.com/share?url=http%3A%2F%2Fhbu.psctelecom.com.vn" target="_blank" title="Chia sẻ ngay lên Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
+                            <img src="/Resources/ImagesPortal/HomePage/imgs/icon/icon_Google.png"></a>
+                    </div>
+                    <div class="icon-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhbu.psctelecom.com.vn&t=" title="Chia sẻ ngay lên facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;">
+                            <img src="/Resources/ImagesPortal/HomePage/imgs/icon/icon_Facebook.png"></a>
+                    </div>
+                </div>
+
+                <div id="ctl15_ctl03_pnCactinkhac">
+					
+                    <div class="tieude">
+                        <a href="#" style="padding-bottom: 5px;">Các tin khác:</a>
+                    </div>
+                    <div class="orthersArticle">
+                        <div class="other_news">
+                            <ul>
+                                
+                                        <li><a href="/vi/tin-tuyen-sinh/03-uu-diem-noi-bat-khang-dinh-chat-luong-dao-tao-tai-truong-dai-hoc-van-hien">
+                                            03 ưu điểm nổi bật khẳng định chất lượng đào tạo tại Trường Đại học Văn Hiến</a> <br />
+                                            <span>07/04/2022</span>
+                                        </li>
+                                    
+                                        <li><a href="/vi/tin-tuyen-sinh/genz-can-lam-gi-khi-cot-moc-quan-trong-sap-den">
+                                            GenZ cần làm gì khi cột mốc quan trọng sắp đến?</a> <br />
+                                            <span>31/03/2022</span>
+                                        </li>
+                                    
+                                        <li><a href="/vi/tin-tuyen-sinh/03-ly-do-de-sinh-vien-the-he-gen-z-lua-chon-dai-hoc-van-hien">
+                                            03 lý do để sinh viên thế hệ Gen Z lựa chọn Đại học Văn Hiến</a> <br />
+                                            <span>25/09/2021</span>
+                                        </li>
+                                    
+                            </ul>
+
+                        </div>
+                    </div>
+                
+				</div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+
+
+<div id="ctl15_ctl03_rwUserLogin" style="display:none;">
+					<div id="ctl15_ctl03_rwUserLogin_C" style="display:none;">
+
+					</div><input id="ctl15_ctl03_rwUserLogin_ClientState" name="ctl15_ctl03_rwUserLogin_ClientState" type="hidden" />
+				</div>
+<script language="javascript" type="text/javascript">
+    var dialogMethod;
+    function CallWebMethodSuccess(results, context, methodName) {
+        switch (methodName) {
+            case "AllowWatchArticle":
+                {
+                    CheckUserWatchCallback(results, context, methodName);
+                }
+                break;
+        }
+    }
+
+    function CallWebMethodFailed(results, context, methodName) {
+        alert(results._message);
+    }
+    // check user login
+    function getQuerystringNameValue(name) {
+        // For example... passing a name parameter of "name1" will return a value of "100", etc.
+        // page.htm?name1=100 or page.htm/name1/100
+        var articleId;
+        var winURL = window.location.href;
+        var index = winURL.indexOf(name);
+        if (index > -1) {
+            winURL = winURL.substr(index, winURL.length);
+            var arr = winURL.indexOf("/") > -1 ? winURL.split("/") : winURL.split("=");;
+            articleId = arr[1];
+        }
+        return articleId;
+    }
+    function CheckUserWatchArticle() {
+        PSCPortal.Services.CMS.AllowWatchArticle("73326cf5-2794-4228-b0e8-71611cc45a0c", CallWebMethodSuccess);
+    }
+    var dialogMethod;
+    function CheckUserWatchCallback(results, context, methodName) {
+        if (!results) {
+            dialogMethod = "CheckUserWatchArticle";
+            var oWnd = pscjqfind("ctl15_ctl03_rwUserLogin");
+            oWnd.setSize(380, 180);
+            oWnd.setUrl("/Modules/CMS/UserLogin.aspx");
+            oWnd.set_title("Login");
+            oWnd.show();
+        }
+    }
+    function RadCheckUserWatchClose(sender, args) {
+        switch (dialogMethod) {
+            case "CheckUserWatchArticle":
+                {
+                    PSCPortal.Services.CMS.CheckUserWatchArticle(CallCheckUserWatchWebMethodSuccess);
+                }
+                break;
+        }
+    }
+    function CallCheckUserWatchWebMethodSuccess(results, context, methodName) {
+        if (!results)
+            window.history.back();
+
+    }
+    //end check user login
+
+    window.onload = function (e) {
+        CheckUserWatchArticle();
+    }
+</script>
+<style type="text/css">
+    .TelerikModalOverlay {
+        filter: alpha(opacity=95) !important; /*for IE 5.5+*/
+        opacity: 1 !important; /*for FF 2x, Opera 9x*/
+        -moz-opacity: 1 !important; /*for FF 1x*/
+        background-color: #BE1E2D !important;
+    }
+</style>
+
+			</div>
+		</div>
+	</div><div id="psc-divPanelBottom" style="width:100%; float:left;">
+		<div id="psc-divPanelBottom-Content" style="min-height: 30px;">
+			<div id="psc-divPortlet-f687eb0f-4160-4a4d-af5e-d874fe9c3cd4" class="psc-divPortlet-Wrapper" style="width:100%;float:left;display:none;">
+				<div class="psc-divPortlet-Content">
+					<link href="/Components/CarouselSlider/CSS/owl.carousel.css" rel="stylesheet" />
+<link href="/Components/CarouselSlider/CSS/owl.theme.css" rel="stylesheet" />
+<script src="/Components/CarouselSlider/Scripts/owl.carousel.js"></script>
+<div id="lien-ket" class="width-common ">
+<div class="container">
+<div class="backgroud-lienket">
+<h1 class="topic col-sm-12"><a href="#"><span style="font-size: 18px;">LI&Ecirc;N KẾT</span></a></h1>
+<div class="block-link">
+<ul class="tabs">
+    <li class="tab-title "><a data-toggle="tab" href="#khoa">Khoa</a><span> //</span></li>
+    <li class="tab-title active" id="tab-slick1"><a data-toggle="tab" href="#trungtam">Vi&ecirc;̣n - Trung T&acirc;m</a><span>// </span></li>
+    <li class="tab-title" id="tab-slick2"><a data-toggle="tab" href="#phong">Phòng Ban</a></li>
+</ul>
+</div>
+<div class="tab-content">
+<section id="trungtam" class="tab-pane active">
+<div class="width-common" id="owl-vien">
+<div class="hover-item ">
+<a href="http://tuyensinh.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/tuyen-sinh.png" />&nbsp;
+<div class="title"><a href="http://tuyensinh.vhu.edu.vn/">
+Ph&ograve;ng Tuyển Sinh
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://litc.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/tt-ngoai-ngu.jpg" />&nbsp;
+<div class="title"><a href="http://litc.vhu.edu.vn/">
+Trung T&acirc;m Ngoại Ngữ
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://sdh.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/vien-sau-dai-hoc.jpg" />&nbsp;
+<div class="title"><a href="http://sdh.vhu.edu.vn/">
+Viện Sau Đại Học
+</a></div>
+</div>
+<!--<div class="hover-item ">
+<a href="http://mba.vhu.edu.vn/">
+<div class="thumb">
+<img class="img-responsive" src="/Resources/ImagesPortal/HomePage/imgs/450x140/sau-dai-hoc-quan-tri-kinh-doanh.png" alt="img" />
+</div>
+<div class="title">
+Chương tr&igrave;nh Thạc sĩ Quản trị kinh doanh
+</div>
+</a>
+</div>-->
+<div class="hover-item ">
+<a href="http://viendoanhtri.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://viendoanhtri.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/vien-doanh-tri.jpg" /></a></div>
+<div class="title"><a href="http://viendoanhtri.vhu.edu.vn/">
+Viện Doanh Tr&iacute;
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://ttcntt.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://ttcntt.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/tt-cong-nghe-thong-tin.jpg" /></a></div>
+<div class="title"><a href="http://ttcntt.vhu.edu.vn/">
+Trung T&acirc;m C&ocirc;ng Nghệ Th&ocirc;ng Tin
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://htdn.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://htdn.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/ht-doanh-nghiep.jpg" /></a></div>
+<div class="title"><a href="http://htdn.vhu.edu.vn/">
+Trung T&acirc;m Hợp T&aacute;c Doanh Nghiệp
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://ttktdbcl.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/khao-thi.jpg" />&nbsp;
+<div class="title"><a href="http://ttktdbcl.vhu.edu.vn/">
+Trung T&acirc;m Khảo Th&iacute; V&agrave; Đảm Bảo Chất Lượng
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://htnh.vhu.edu.vn/">
+</a>
+&nbsp;<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/tt-ho-tro-nguoi-hoc.jpg" />&nbsp;
+<div class="title"><a href="http://htnh.vhu.edu.vn/">
+Trung T&acirc;m Hỗ Trợ Người Học
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://gdtc.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/tt-giao-duc-the-chat.png" />&nbsp;
+<div class="title"><a href="http://gdtc.vhu.edu.vn/">
+Trung T&acirc;m Gi&aacute;o Dục Thể Chất
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://alumni.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/hoi-cuu-sinh-vien.jpg" />&nbsp;
+<div class="title"><a href="http://alumni.vhu.edu.vn/">
+Hội Cựu Sinh Vi&ecirc;n
+</a></div>
+</div>
+</div>
+</section>
+<section id="khoa" class="tab-pane">
+<div class="width-common" id="owl-khoa">
+<div class="hover-item ">
+<a href="http://dl.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/du-lich.jpg" />&nbsp;
+<div class="title"><a href="http://dl.vhu.edu.vn/">
+Khoa Du Lịch
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://xhnv.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/xh-nv.jpg" />&nbsp;
+<div class="title"><a href="http://xhnv.vhu.edu.vn/">
+Khoa Khoa Học X&atilde; Hội V&agrave; Nh&acirc;n Văn
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://ktcn.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/kt-cn.jpg" />&nbsp;
+<div class="title"><a href="http://ktcn.vhu.edu.vn/">
+Khoa Kỹ Thuật - C&ocirc;ng Nghệ
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://nt.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/nghe-thuat.jpg" />&nbsp;
+<div class="title"><a href="http://nt.vhu.edu.vn/">
+Khoa Nghệ Thuật
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://kt.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/kt.jpg" />&nbsp;
+<div class="title"><a href="http://kt.vhu.edu.vn/">
+Khoa Kinh Tế
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="https://nn.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="https://nn.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/ngoai-ngu.jpg" /></a></div>
+<div class="title"><a href="https://nn.vhu.edu.vn/">
+Khoa Ngoại Ngữ
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="https://dph.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="https://dph.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/%C4%91ph.jpg" /></a></div>
+<div class="title"><a href="https://dph.vhu.edu.vn/">
+Khoa Đ&ocirc;ng Phương Học
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://nongnghiep.vhu.edu.vn/">
+</a>
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/cn-nong-nghiep.png" />&nbsp;
+<div class="title"><a href="http://nongnghiep.vhu.edu.vn/">
+Khoa C&ocirc;ng nghệ N&ocirc;ng Nghiệp
+</a></div>
+</div>
+</div>
+</section>
+<section id="phong" class="tab-pane">
+<div class="width-common" id="owl-phong">
+<div class="hover-item ">
+<a href="http://qldt.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://qldt.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/quan-ly-dao-tao.png" />&nbsp;</a></div>
+<div class="title"><a href="http://qldt.vhu.edu.vn/">
+Phòng Quản Lý Đào Tạo
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://doanhoi.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://doanhoi.vhu.edu.vn/">
+<img alt="" src="/Resources/Images/SubDomain/HomePage/2020/6-2020/logo-lien-ket/doan-hoi.jpg" />&nbsp;</a></div>
+<div class="title"><a href="http://doanhoi.vhu.edu.vn/">
+Đo&agrave;n - Hội
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://dangbo.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://dangbo.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/Images/SubDomain/HomePage/N%C4%83m%202017/dang-0814.jpg" alt="img" />
+</a></div>
+<div class="title"><a href="http://dangbo.vhu.edu.vn/">
+Đảng Bộ
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://qlkh.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://qlkh.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/Images/SubDomain/HomePage/slider/Slide%20Phong%20Quan%20Ly%20Khoa%20Hoc.jpg" alt="img" style="top: 3454px; width: 219px; height: 128px;" /></a></div>
+<div class="title"><a href="http://qlkh.vhu.edu.vn/">
+Ph&ograve;ng Quản L&yacute; Khoa Học v&agrave; Hợp t&aacute;c quốc tế
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://tckt.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://tckt.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/ImagesPortal/HomePage/imgs/450x140/phong-tai-chinh.png" alt="img" />
+</a></div>
+<div class="title"><a href="http://tckt.vhu.edu.vn/">
+Phòng T&agrave;i Ch&iacute;nh - Kế To&aacute;n
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://hcns.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://hcns.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/ImagesPortal/HomePage/imgs/450x140/phong-hanh-chinh-nhan-su.png" alt="img" />
+</a></div>
+<div class="title"><a href="http://hcns.vhu.edu.vn/">
+Phòng H&agrave;nh Ch&iacute;nh Nh&acirc;n Sự
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://csvc.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://csvc.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/ImagesPortal/HomePage/imgs/450x140/phong-quan-tri-csvc.png" alt="img" />
+</a></div>
+<div class="title"><a href="http://csvc.vhu.edu.vn/">
+Phòng Cơ Sở Vật Chất
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://ctsv.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://ctsv.vhu.edu.vn/">
+<img class="img-responsive" src="/Resources/ImagesPortal/HomePage/imgs/450x140/phong-cong-tac-sinh-vien.png" alt="img" />
+</a></div>
+<div class="title"><a href="http://ctsv.vhu.edu.vn/">
+Phòng C&ocirc;ng Tác Sinh Vi&ecirc;n
+</a></div>
+</div>
+<div class="hover-item ">
+<a href="http://tckh.vhu.edu.vn/">
+</a>
+<div class="thumb"><a href="http://tckh.vhu.edu.vn/"><img class="img-responsive" src="/Resources/Images/SubDomain/HomePage/slider/Slide%20Tap%20Chi%20Khoa%20hoc.png" alt="img" style="top: 4742px; width: 222px; height: 124px;" /></a></div>
+<div class="title"><a href="http://tckh.vhu.edu.vn/">
+Tạp Ch&iacute; Khoa Học
+</a></div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<script>
+    pscjq(document).ready(function() {
+	pscjq("#owl-khoa").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            navigation: true,
+            navigationText: ["prev", "next"],
+            rewindNav: true,
+            scrollPerPage: false,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+
+        });
+        pscjq('#owl-vien').owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            navigation: true,
+            navigationText: ["prev", "next"],
+            rewindNav: true,
+            scrollPerPage: false,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+
+        });
+        
+        pscjq("#owl-phong").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            navigation: true,
+            navigationText: ["prev", "next"],
+            rewindNav: true,
+            scrollPerPage: false,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+
+        });
+
+    });
+</script>
+<style>
+    #owl-demo .item {
+    margin: 3px;
+    }
+    #owl-demo .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    }
+    @media (min-width: 992px){
+    .container {
+    width: 970px;
+    }
+    }
+</style>
+
+				</div>
+			</div><div id="psc-divPortlet-c938b4e7-8909-4275-8394-507741ee3a41" class="psc-divPortlet-Wrapper" style="width:100%; float:left;">
+				<div class="psc-divPortlet-Content">
+					<div id="ts-footer" class="width-common">
+<div class="container border-bottom"><a class="f-logo" href="https://tuyensinh.vhu.edu.vn/"><img alt="" src="/Resources/Images/SubDomain/tuyensinh/TT-TVTS-footer.png" /><br />
+</a>
+<div class="f-content row">
+<div class="f-item col-sm-6 col-xs-12">
+<div><span style="color: #a5a5a5;"></span>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;"><strong>Địa chỉ</strong></span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;"><strong>Trụ sở ch&iacute;nh</strong>:<br />
+<span style="font-size: 14px; text-align: justify; font-family: Arial; color: #a5a5a5;">⦁&nbsp;</span>HungHau House: 613 &Acirc;u Cơ, Phường Ph&uacute; Trung, Quận T&acirc;n Ph&uacute;, TP.HCM</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;"><strong>C&aacute;c cơ sở đ&agrave;o tạo</strong>:</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;">⦁ Harmony Campus: 624 &Acirc;u Cơ, Phường 10, Quận T&acirc;n B&igrave;nh, TP. HCM</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;">⦁ HungHau Campus: Đại lộ Nguyễn Văn Linh, Khu đ&ocirc; thị Nam Th&agrave;nh phố</span></div>
+<div style="text-align: justify;"><span style="font-size: 14px; font-family: Arial; color: #a5a5a5;">⦁ myU Campus: 665 - 667 - 669 Điện Bi&ecirc;n Phủ, Phường 1, Quận 3, TP. HCM<br />
+<span style="font-size: 14px; text-align: justify; font-family: Arial; color: #a5a5a5;">⦁ Cơ sở:&nbsp;642 &Acirc;u Cơ, Phường 10, Quận T&acirc;n B&igrave;nh, TP. HCM<br />
+<span style="font-size: 14px; text-align: justify; font-family: Arial; color: #a5a5a5;">⦁ Cơ sở:&nbsp;8-14 Nguyễn B&aacute; Tuyển, Phường 12, Quận T&acirc;n B&igrave;nh, TP. HCM</span><br />
+<span style="font-size: 14px; text-align: justify; font-family: Arial; color: #a5a5a5;">⦁ Cơ sở:&nbsp;2A2 Quốc lộ 1A, Phường Thạnh Xu&acirc;n, Quận 12, TP.HCM</span></span></span></div>
+</div>
+<p><span style="font-size: 16px; color: #7f7f7f;">Email: info@vhu.edu.vn</span></p>
+<p><span style="font-size: 16px; color: #7f7f7f;">M&atilde; trường: DVH - Hotline:1800 1568</span></p>
+</div>
+<div class="f-item col-sm-3 col-xs-12 text-uppercase">
+<p><a href="https://ts.vhu.edu.vn/"><strong><span style="font-size: 14px;">Đại học</span></strong></a></p>
+<p><span style="font-size: 14px;"><a href="https://lienthong.vhu.edu.vn/"><strong><span>Li&ecirc;n th&ocirc;ng &ndash; văn bằng 2</span></strong></a></span></p>
+</div>
+<div class="f-item col-sm-3 col-xs-12 text-uppercase">
+<p><a href="https://sdh.vhu.edu.vn/"><strong><span style="font-size: 14px;">Sau đại học</span></strong></a></p>
+</div>
+</div>
+</div>
+<div class="container f-bottom">
+<div class="row">
+<div class="col-sm-6 col-xs-12">
+<p><span style="font-size: 16px; color: #a5a5a5;">COPYRIGHT &copy; 2024 - <a href="https://vhu.edu.vn" target="_blank">TRƯỜNG ĐẠI HỌC VĂN HIẾN</a></span></p>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+        
+
+        <div id="articleModal" class="modal fade" role="form">
+            <div class="modal-dialog modal-lg vertical-align-center-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("ctl15_ctl03_ValidationSummary1"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl15_ctl03_ValidationSummary1 = document.all ? document.all["ctl15_ctl03_ValidationSummary1"] : document.getElementById("ctl15_ctl03_ValidationSummary1");
+ctl15_ctl03_ValidationSummary1.showmessagebox = "True";
+ctl15_ctl03_ValidationSummary1.showsummary = "False";
+ctl15_ctl03_ValidationSummary1.validationGroup = "Feedback";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('RadScriptManager1_TSM');
+(function(id) {
+    var e = document.getElementById(id);
+    if (e) {
+        e.dispose = function() {
+            Array.remove(Page_ValidationSummaries, document.getElementById(id));
+        }
+        e = null;
+    }
+})('ctl15_ctl03_ValidationSummary1');
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"clientStateFieldID":"RadWindowManager1_ClientState","formID":"form1","iconUrl":"","minimizeIconUrl":"","name":"RadWindowManager1","skin":"Default","windowControls":"[]"}, null, null, $get("RadWindowManager1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":false,"behaviors":36,"clientStateFieldID":"ctl15_ctl03_rwUserLogin_ClientState","formID":"form1","iconUrl":"","minimizeIconUrl":"","modal":true,"name":"rwUserLogin","skin":"Default","visibleStatusbar":false}, {"close":RadCheckUserWatchClose}, null, $get("ctl15_ctl03_rwUserLogin"));
+});
+//]]>
+</script>
+</form>
+	<div class="zalo-chat-widget" data-oaid="685414677491676498" data-welcome-message="Văn Hiến chào bạn!</br>		Nếu có thắc mắc về Tuyển sinh 2023, hãy đặt câu hỏi, bạn nhé!" data-autopopup="0" data-width="350" data-height="420">
+	</div> 
+	<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<style>
+	.fb_dialog_content  iframe{
+		bottom: 20%!important;
+		right: 15px;
+		left: unset!important;
+	}
+	.fb_iframe_widget iframe{
+		right: 6%;
+		bottom: 25%!important;
+		left: unset!important;
+	}
+	</style>
+	<script>        window.fbAsyncInit = function() {          FB.init({            xfbml            : true,            version          : 'v9.0'          });        };         (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0];        if (d.getElementById(id)) return;        js = d.createElement(s); js.id = id;        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';        fjs.parentNode.insertBefore(js, fjs);      }(document, 'script', 'facebook-jssdk'));
+	</script>       
+	<!-- Your Chat Plugin code -->
+	<div class="fb-customerchat"        attribution="setup_tool"        page_id="118502361566576"  theme_color="#7646ff"  logged_in_greeting="Chào bạn, chúc một ngày tốt lành! Bạn cần hỗ trợ gì không?"  logged_out_greeting="Chào bạn, chúc một ngày tốt lành! Bạn cần hỗ trợ gì không?">
+</div>
+</body>
+</html>
