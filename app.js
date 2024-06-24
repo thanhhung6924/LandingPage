@@ -29,8 +29,7 @@ function setActivePage(index) {
   pages[currentIndex].classList.remove("active");
   getdots[currentIndex].classList.remove("active");
 
-  if (index > currentIndex || (index==0&&currentIndex==2)  ) {
-   
+  if (index > currentIndex || (index == 0 && currentIndex == 2)) {
     pages[currentIndex].classList.add("disappearonleft");
     $(pages[currentIndex]).one("webkitAnimationEnd", function (event) {
       this.classList.remove("disappearonleft");
@@ -39,7 +38,7 @@ function setActivePage(index) {
     $(pages[index]).one("webkitAnimationEnd", function (event) {
       this.classList.remove("appearonright");
     });
-  } else if ( (index==2&&currentIndex==0)||index < currentIndex ) {
+  } else if ((index == 2 && currentIndex == 0) || index < currentIndex) {
     pages[currentIndex].classList.add("disappearonright");
     $(pages[currentIndex]).one("webkitAnimationEnd", function (event) {
       this.classList.remove("disappearonright");
@@ -54,22 +53,21 @@ function setActivePage(index) {
   getdots[index].classList.add("active");
   currentIndex = index;
 }
-var tg=setInterval(() => {
+var tg = setInterval(() => {
   if (isClickable) {
-  
-     var nextIndex = currentIndex + 1;
-   
-   }
-   if (nextIndex == pages.length) {
+    var nextIndex = currentIndex + 1;
+  }
+  if (nextIndex == pages.length) {
     nextIndex = 0;
-  } setActivePage(nextIndex);
- }, 3000);
+  }
+  setActivePage(nextIndex);
+}, 3000);
 $(".next__icon").click(function (event) {
-  clearInterval(tg)
+  clearInterval(tg);
   if (!isClickable) return;
   isClickable = false;
 
-  let nextIndex = currentIndex+1 ;
+  let nextIndex = currentIndex + 1;
   if (nextIndex == pages.length) {
     nextIndex = 0;
   }
@@ -82,11 +80,11 @@ $(".next__icon").click(function (event) {
 });
 
 $(".prev__icon").click(function (event) {
-  clearInterval(tg)
+  clearInterval(tg);
   if (!isClickable) return;
   isClickable = false;
 
-  let prevIndex = currentIndex-1;
+  let prevIndex = currentIndex - 1;
   if (prevIndex == -1) {
     prevIndex = pages.length - 1;
   }
@@ -111,4 +109,15 @@ $(".dot").click(function (event) {
   setTimeout(() => {
     isClickable = true;
   }, clickDelay);
+});
+gsap.to(".ok", {
+  stagger: 2,
+  x: -540,
+
+  scale: 1,
+
+  repeat: -1,
+  duration: 0.8,
+ yoyo: true,
+  ease: "linear",
 });
