@@ -6,7 +6,8 @@
     <!-- reset  css-->
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <!-- link font awesome -->
-     <script src="./gsap.min.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script src="./ScrollTrigger.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -129,36 +130,35 @@
         </a>
         <hr class="hr" />
         <div class="header--body">
-         
           <div class="test">
             <div class="ok">T</div>
             <div class="ok">H</div>
             <div class="ok">À</div>
             <div class="ok">N</div>
             <div class="ok">H</div>
-            <div class="ok"> </div>
+            <div class="ok"></div>
             <div class="ok">N</div>
             <div class="ok">H</div>
             <div class="ok">Â</div>
             <div class="ok">N</div>
-            <div class="ok"> </div>
+            <div class="ok"></div>
             <div class="ok">T</div>
             <div class="ok">R</div>
             <div class="ok">Ư</div>
             <div class="ok">Ớ</div>
             <div class="ok">C</div>
-            <div class="ok"> </div>
+            <div class="ok"></div>
             <div class="ok">T</div>
             <div class="ok">H</div>
             <div class="ok">À</div>
             <div class="ok">N</div>
             <div class="ok">H</div>
-            <div class="ok"> </div>
+            <div class="ok"></div>
             <div class="ok">D</div>
             <div class="ok">A</div>
             <div class="ok">N</div>
             <div class="ok">H</div>
-        </div>
+          </div>
           <div class="list__img">
             <img
               class="item__img active"
@@ -403,9 +403,13 @@
                   <div class="box__bottom">19/06/2024</div>
                 </div>
                 <div class="event__content">
-                  <div class="event__title">Hội trại truyền thống 2024 "Hào khí Văn Hiến"
-                    Địa điểm: Khu du lịch Damb'ri - Bảo Lộc - Lâm Đồng</div>
-                  <div class="event__desc">Địa điểm: Khu du lịch Damb'ri - Bảo Lộc - Lâm Đồng</div>
+                  <div class="event__title">
+                    Hội trại truyền thống 2024 "Hào khí Văn Hiến" Địa điểm: Khu
+                    du lịch Damb'ri - Bảo Lộc - Lâm Đồng
+                  </div>
+                  <div class="event__desc">
+                    Địa điểm: Khu du lịch Damb'ri - Bảo Lộc - Lâm Đồng
+                  </div>
                 </div>
               </div>
             </div>
@@ -414,9 +418,6 @@
       </div>
     </div>
     <div class="scrollhorizontalt">
-      <div class="container">
-
-      </div>
       <div class="visiting">
         <div class="container">
           <div class="visiting__body">
@@ -427,72 +428,110 @@
                   <img src="./assets/img/bgr/CLB ngoai ngu.jpg" alt="" />
                 </div>
                 <div class="visiting__content">
-                  <h3 class="visiting__heading">“TỨ ĐẠI” CÂU LẠC BỘ NGOẠI NGỮ TẠI TRƯỜNG ĐẠI HỌC VĂN HIẾN</h3>
+                  <h3 class="visiting__heading">
+                    “TỨ ĐẠI” CÂU LẠC BỘ NGOẠI NGỮ TẠI TRƯỜNG ĐẠI HỌC VĂN HIẾN
+                  </h3>
                   <p class="visiting__desc">
-                    Nếu VHUers đang tìm một câu lạc bộ ngoại ngữ thú vị thì đừng bỏ qua sự đáng yêu của các câu lạc bộ trong bài viết này nhé. 
+                    Nếu VHUers đang tìm một câu lạc bộ ngoại ngữ thú vị thì đừng
+                    bỏ qua sự đáng yêu của các câu lạc bộ trong bài viết này
+                    nhé.
                   </p>
                   <a href="" class="visiting-learnmore">Xem thêm</a>
-    
+                </div>
+              </div>
+              <div class="visiting__item">
+                <div class="visiting__img">
+                  <img src="./assets/img/bgr/CLB ngoai ngu.jpg" alt="" />
+                </div>
+                <div class="visiting__content">
+                  <h3 class="visiting__heading">
+                    ĐIỂM DANH CHUỖI CÂU LẠC BỘ ĐA KỸ NĂNG, ĐA LĨNH VỰC TẠI
+                    TRƯỜNG ĐẠI HỌC VĂN HIẾN
+                  </h3>
+                  <p class="visiting__desc">
+                    Mỗi CLB đều có chất riêng, phong cách riêng và sức hút
+                    riêng. Cùng Ad tìm hiểu nhanh những CLB cực chất của VHUers
+                    nhé
+                  </p>
+                  <a href="" class="visiting-learnmore">Xem thêm</a>
+                </div>
+              </div>
+              <div class="visiting__item">
+                <div class="visiting__img">
+                  <img src="./assets/img/bgr/CLB ngoai ngu.jpg" alt="" />
+                </div>
+                <div class="visiting__content">
+                  <h3 class="visiting__heading">
+                    ĐIỂM DANH CHUỖI CÂU LẠC BỘ ĐA KỸ NĂNG, ĐA LĨNH VỰC TẠI
+                    TRƯỜNG ĐẠI HỌC VĂN HIẾN
+                  </h3>
+                  <p class="visiting__desc">
+                    Mỗi CLB đều có chất riêng, phong cách riêng và sức hút
+                    riêng. Cùng Ad tìm hiểu nhanh những CLB cực chất của VHUers
+                    nhé
+                  </p>
+                  <a href="" class="visiting-learnmore">Xem thêm</a>
+                </div>
               </div>
             </div>
-            <div class="visiting__item">
-              <div class="visiting__img">
-                <img src="./assets/img/bgr/CLB ngoai ngu.jpg" alt="" />
-              </div>
-              <div class="visiting__content">
-                <h3 class="visiting__heading">ĐIỂM DANH CHUỖI CÂU LẠC BỘ ĐA KỸ NĂNG, ĐA LĨNH VỰC TẠI TRƯỜNG ĐẠI HỌC VĂN HIẾN</h3>
-                <p class="visiting__desc">
-                
-Mỗi CLB đều có chất riêng, phong cách riêng và sức hút riêng. Cùng Ad tìm hiểu nhanh những CLB cực chất của VHUers nhé
-                </p>
-                <a href="" class="visiting-learnmore">Xem thêm</a>
-  
-            </div>
-          </div>
-          <div class="visiting__item">
-            <div class="visiting__img">
-              <img src="./assets/img/bgr/CLB ngoai ngu.jpg" alt="" />
-            </div>
-            <div class="visiting__content">
-              <h3 class="visiting__heading">ĐIỂM DANH CHUỖI CÂU LẠC BỘ ĐA KỸ NĂNG, ĐA LĨNH VỰC TẠI TRƯỜNG ĐẠI HỌC VĂN HIẾN</h3>
-              <p class="visiting__desc">
-              
-Mỗi CLB đều có chất riêng, phong cách riêng và sức hút riêng. Cùng Ad tìm hiểu nhanh những CLB cực chất của VHUers nhé
-              </p>
-              <a href="" class="visiting-learnmore">Xem thêm</a>
-
           </div>
         </div>
-      
-          </div>
-        </div>
-      </div>
         <div class="news__body">
           <div class="news__title">TIN TỨC</div>
           <div class="news__left">
             <div class="news__list">
               <div class="news__item">
-                <div class="news__content"><p class="news__desc">HỘI TRẠI TRUYỀN THỐNG 2024<strong> CHÁY MÃI NGỌN LỬA NHIỆT HUYẾT VÀ THANH XUÂN</strong></p>
-                
-                <p class="desc">Sôi nổi, đầy nhiệt huyết, ngập tràn thanh xuân là những điều đọng lại trong lòng VHUers sau chuyến trải nghiệp 2N1Đ cùng các đồng đội thân yêu tại Hội trại truyền thống 2024 - "Hào khí Văn Hiến". Hội trại đã thật sự trở thành nơi kết nối, giao lưu để VHUers có thể “vừa học – vừa chơi” qua nhiều hoạt động rèn luyện thể chất và trí tuệ như team building, văn nghệ, thiết kế sáng tạo cổng trại, ...</p>
-                <p class="join__now">Tham gia</p>
-              </div>
-             
-                <img src="./assets/img/bgr/IMG_1060.jpg" alt="" class="news__img">
-                
+                <div class="news__content">
+                  <p class="news__desc">
+                    HỘI TRẠI TRUYỀN THỐNG 2024<strong>
+                      CHÁY MÃI NGỌN LỬA NHIỆT HUYẾT VÀ THANH XUÂN</strong
+                    >
+                  </p>
+
+                  <p class="desc">
+                    Sôi nổi, đầy nhiệt huyết, ngập tràn thanh xuân là những điều
+                    đọng lại trong lòng VHUers sau chuyến trải nghiệp 2N1Đ cùng
+                    các đồng đội thân yêu tại Hội trại truyền thống 2024 - "Hào
+                    khí Văn Hiến". Hội trại đã thật sự trở thành nơi kết nối,
+                    giao lưu để VHUers có thể “vừa học – vừa chơi” qua nhiều
+                    hoạt động rèn luyện thể chất và trí tuệ như team building,
+                    văn nghệ, thiết kế sáng tạo cổng trại, ...
+                  </p>
+                  <p class="join__now">Tham gia</p>
+                </div>
+
+                <img
+                  src="./assets/img/bgr/IMG_1060.jpg"
+                  alt=""
+                  class="news__img"
+                />
               </div>
             </div>
           </div>
           <div class="new__right"></div>
         </div>
-      
-        <div class="scrollhorizontalt1">
-          <div class="container">
-            <div class="text">ok</div>
-          </div>
+      </div>
+    </div>
+    <div class="maincontent2">
+      <div class="scrollhorizontalt1 panel">
+        <div class="container2">
+          <div class="text red">ok</div>
         </div>
       </div>
-    
+      <div class="scrollhorizontalt2 panel">
+        <div class="container2">
+          <div class="text blue">ok</div>
+        </div>
+      </div>
+      <div class="scrollhorizontalt3 panel">
+        <div class="container2">
+          <div class="text yellow">ok</div>
+        </div>
+      </div>
+    </div>
+    <div class="maincontent3">
+      <div class="text" style="background-color: blueviolet">ok</div>
+    </div>
     <script src="./app.js"></script>
   </body>
 </html>

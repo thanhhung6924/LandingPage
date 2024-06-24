@@ -118,6 +118,22 @@ gsap.to(".ok", {
 
   repeat: -1,
   duration: 0.8,
- yoyo: true,
+  yoyo: true,
   ease: "linear",
+});
+/////////////////////////////////////////
+gsap.registerPlugin(ScrollTrigger);
+
+let sections = gsap.utils.toArray(".panel");
+
+gsap.to(sections, {
+  xPercent: -100 * (sections.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".maincontent2",
+    pin: true,
+    scrub: 1,
+    snap: 1 / (sections.length - 1),
+    end: () => "+=" + document.querySelector(".maincontent2").offsetWidth
+  }
 });
